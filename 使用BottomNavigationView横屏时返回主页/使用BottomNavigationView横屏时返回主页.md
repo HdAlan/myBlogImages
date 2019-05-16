@@ -1,22 +1,22 @@
 ##问题：
 如图，“发现”页即为主页，然后我们切换到“我”页，一切正常。
-  
-![Avatar](https://raw.githubusercontent.com/HdAlan/myBlogImages/master/App_Home_Page.png)
-![Avatar](https://raw.githubusercontent.com/HdAlan/myBlogImages/master/App_Me_Page.png)  
-
+<fancybox>  
+![Avatar](https://raw.githubusercontent.com/HdAlan/myBlogImages/master/%E4%BD%BF%E7%94%A8BottomNavigationView%E6%A8%AA%E5%B1%8F%E6%97%B6%E8%BF%94%E5%9B%9E%E4%B8%BB%E9%A1%B5/App_Home_Page.png)
+![Avatar](https://raw.githubusercontent.com/HdAlan/myBlogImages/master/%E4%BD%BF%E7%94%A8BottomNavigationView%E6%A8%AA%E5%B1%8F%E6%97%B6%E8%BF%94%E5%9B%9E%E4%B8%BB%E9%A1%B5/App_Me_Page.png)  
+</fancybox>
 那么问题来了，如果切换到“我”页后把手机横屏，则会出现下面的情况。  
-
-![Avatar](https://raw.githubusercontent.com/HdAlan/myBlogImages/master/App_HengPing_Page.png)  
-
+<fancybox>
+![Avatar](https://raw.githubusercontent.com/HdAlan/myBlogImages/master/%E4%BD%BF%E7%94%A8BottomNavigationView%E6%A8%AA%E5%B1%8F%E6%97%B6%E8%BF%94%E5%9B%9E%E4%B8%BB%E9%A1%B5/App_HengPing_Page.png)  
+</fancybox>
 嗯？怎么又回到“发现”页了？？
 ##解决办法：
 ####思考
 据自己了解，Android应用程序刷新页面有两种情况，第一种是用户操作；
 第二种非用户操作，即系统触发的。很明显这是系统触发的咯。
 然后，搬来Android应用程序生命周期图： 
-
-![Avatar](https://raw.githubusercontent.com/HdAlan/myBlogImages/master/Android_Life_Circle.png)
-
+<fancybox>
+![Avatar](https://raw.githubusercontent.com/HdAlan/myBlogImages/master/%E4%BD%BF%E7%94%A8BottomNavigationView%E6%A8%AA%E5%B1%8F%E6%97%B6%E8%BF%94%E5%9B%9E%E4%B8%BB%E9%A1%B5/Android_Life_Circle.png)
+</fancybox>
 看到，在整个生命周期中，APP会调用onCreate()、onStart()、onResume()、onPause()、onStop()、onRestart()、onDestroy()这几个函数。所以，我在MainActivity.java中重构这几个函数，使用LogCat来验证在横屏的过程中，APP就调用了哪些函数。  
 
 ```
@@ -103,9 +103,9 @@
 ```
   
 下面运行程序，横屏后，LogCat输出如下：  
-
-![Avatar](https://raw.githubusercontent.com/HdAlan/myBlogImages/master/LogCatLog.png)
-
+<fancybox>
+![Avatar](https://raw.githubusercontent.com/HdAlan/myBlogImages/master/%E4%BD%BF%E7%94%A8BottomNavigationView%E6%A8%AA%E5%B1%8F%E6%97%B6%E8%BF%94%E5%9B%9E%E4%B8%BB%E9%A1%B5/LogCatLog.png)
+</fancybox>
 仔细观察发现，横屏后，程序再次调用了onCreate()函数，页面不刷新才怪勒！
 
 ####解决
@@ -157,9 +157,9 @@
 ```
 
 再次横屏， 
- 
-![Avatar](https://raw.githubusercontent.com/HdAlan/myBlogImages/master/App_HengPing_Page2.png)  
-
+<fancybox>
+![Avatar](https://raw.githubusercontent.com/HdAlan/myBlogImages/master/%E4%BD%BF%E7%94%A8BottomNavigationView%E6%A8%AA%E5%B1%8F%E6%97%B6%E8%BF%94%E5%9B%9E%E4%B8%BB%E9%A1%B5/App_HengPing_Page2.png)  
+</fancybox>
 OK，问题解决！
 
 ###注意
