@@ -3,7 +3,7 @@
 ### 二、将数据存储到文件中
 Context类中提供了一个openFileOutput()方法，可以用于将数据存储到指定的文件中。
 <fancybox>
-![Avartar]()
+![Avartar](https://raw.githubusercontent.com/HdAlan/myBlogImages/master/Android%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%E5%AD%98%E5%82%A8/method_openFileOutput.jpg)
 </fancybox>  
 可以看到，此方法接收两个参数，第一个即是文件的名字，这里不可以包含文件路径，所有的文件都是默认存储到/data/data/<packagename>/files/目录下的。第二个参数是文件的操作模式，主要有两种可以选择，**MODE\_PRIVATE**和**MODE\_APPEND**,其中MODE\_PRIVATE 是默认的操作模式，表示当指定同样文件名的时候，所写入的内容将会覆盖原文件中的内容，而MODE\_APPEND则表示如果该文件存在，就往文件里面追加内容，不存在就创建新文件。  
 下面，做一个简单的记事本Demo应用一下。  
@@ -117,25 +117,25 @@ public class MainActivity extends AppCompatActivity {
 ```
 程序运行如图：  
 <fancybox>
-![Avatrar]()
+![Avatrar](https://raw.githubusercontent.com/HdAlan/myBlogImages/master/Android%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%E5%AD%98%E5%82%A8/app_running.jpg)
 </fancybox>  
 点击保存之前，可以看到，应用数据中并没有files目录，这是因为还未曾保存过文件，到保存的时候会自动创建。  
 <fancybox>
-![Avatrar]()
+![Avatrar](https://raw.githubusercontent.com/HdAlan/myBlogImages/master/Android%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%E5%AD%98%E5%82%A8/storage_before_saveText.jpg)
 </fancybox>  
 现在，随便输入一些东西，点击“保存文本”，然后再次查看应用程序目录。  
 <fancybox>
-![Avatrar]()
+![Avatrar](https://raw.githubusercontent.com/HdAlan/myBlogImages/master/Android%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%E5%AD%98%E5%82%A8/storage_after_saveText.jpg)
 </fancybox>  
-哇！多了一个files目录，并且目录下多了一个my_text文件，没错，这就是我们的记事本被保存的地方。现在查看一下：  
+哇！多了一个files目录，并且目录下多了一个my_text文件，没错，这就是我们的记事本被保存的地方。现在查看一下文件的内容：  
 <fancybox>
-![Avatrar]()
+![Avatrar](https://raw.githubusercontent.com/HdAlan/myBlogImages/master/Android%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%E5%AD%98%E5%82%A8/saved_text_content.jpg)
 </fancybox>  
 没错，刚刚我输入了“I'm Prodigal”。下面我们来看看如何查看文件的内容吧！
 ### 三、从文本中读取数据
 类似于将数据存储到文件中，Context类中还提供了一个openFileInput()方法，用于从文件中读取数据。  
 <fancybox>
-![Avatrar]()
+![Avatrar](https://raw.githubusercontent.com/HdAlan/myBlogImages/master/Android%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%E5%AD%98%E5%82%A8/method_openFileInput.jpg)
 </fancybox>  
 可以看到，这个方法只有需要传入一个参数，即要读取的文件的名字，然后系统会自动到/data/data/<package name>/files/目录下去加载这个文件，并返回一个FileInputStream对象。  
 对app进行改进，使其在加载时自动载入已存在的文件。  
@@ -253,4 +253,8 @@ public class MainActivity extends AppCompatActivity {
 
 ```
 
-
+接着上一步，保存后，完全退出此程序，然后再次进入。  
+<fancybox>
+![Avartar](https://raw.githubusercontent.com/HdAlan/myBlogImages/master/Android%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%E5%AD%98%E5%82%A8/after_Load_text.jpg)
+</fancybox>  
+Perfect！
